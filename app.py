@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, jsonify
+from flask import Flask, render_template, redirect, url_for
 from flask_session import Session
 import os
 import logging
@@ -20,8 +20,8 @@ def create_app():
     Session(app)
     
     # Import blueprints
-    from comissoes import comissoes_bp
-    from financeiro import financeiro_bp
+    from comissoes.routes import comissoes_bp
+    from financeiro.routes import financeiro_bp
     
     # Registrando os blueprints
     app.register_blueprint(comissoes_bp, url_prefix='/comissoes')
@@ -57,7 +57,6 @@ def create_app():
     
     return app
 
-# Create the application instance
 app = create_app()
 
 if __name__ == '__main__':
