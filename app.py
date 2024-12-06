@@ -20,8 +20,8 @@ def create_app():
     Session(app)
     
     # Import blueprints
-    from comissoes.routes import comissoes_blueprint
-    from financeiro.routes import financeiro_blueprint
+    from comissoes import comissoes_blueprint
+    from financeiro import financeiro_blueprint
     
     # Registrando os blueprints
     app.register_blueprint(comissoes_blueprint, url_prefix='/comissoes')
