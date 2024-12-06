@@ -20,12 +20,12 @@ def create_app():
     Session(app)
     
     # Import blueprints
-    from comissoes.routes import comissoes_bp
-    from financeiro.routes import financeiro_bp
+    from comissoes.routes import comissoes_blueprint
+    from financeiro.routes import financeiro_blueprint
     
     # Registrando os blueprints
-    app.register_blueprint(comissoes_bp, url_prefix='/comissoes')
-    app.register_blueprint(financeiro_bp, url_prefix='/financeiro')
+    app.register_blueprint(comissoes_blueprint, url_prefix='/comissoes')
+    app.register_blueprint(financeiro_blueprint, url_prefix='/financeiro')
     
     # Ensure the uploads directory exists
     os.makedirs('uploads', exist_ok=True)
