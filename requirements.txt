@@ -1,0 +1,8 @@
+Flask==2.3.3
+Flask-Session==0.5.0
+pandas==2.0.3
+Werkzeug==2.3.7
+waitress==2.1.2
+openpyxl==3.1.2
+gunicorn==21.2.0
+python-dotenv==1.0.0

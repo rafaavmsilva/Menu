@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AF360 Bank - Portal</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #1a3668;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            text-align: center;
+            padding: 2rem;
+            max-width: 1200px;
+            width: 100%;
+        }
+        .logo {
+            width: 200px;
+            margin-bottom: 2rem;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            font-weight: 500;
+        }
+        .modules {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .module-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 2rem;
+            width: 300px;
+            text-decoration: none;
+            color: white;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        .module-card:hover {
+            transform: translateY(-5px);
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        .module-icon {
+            font-size: 48px;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+        .module-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        .module-description {
+            font-size: 1rem;
+            opacity: 0.8;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="AF360 Bank" class="logo">
+        <h1>Bem-vindo ao Portal AF360 Bank</h1>
+        <div class="modules">
+            <a href="#" onclick="startModule('comissoes', 5001); return false;" class="module-card">
+                <span class="material-icons module-icon">paid</span>
+                <h2>Comissões</h2>
+                <p>Gerenciamento de comissões e contratos</p>
+            </a>
+            <a href="#" onclick="startModule('financeiro', 5002); return false;" class="module-card">
+                <span class="material-icons module-icon">account_balance</span>
+                <h2>Financeiro</h2>
+                <p>Gestão financeira e relatórios</p>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        async function startModule(name, port) {
+            try {
+                const response = await fetch(`/start-${name}`);
+                if (response.ok) {
+                    setTimeout(() => {
+                        window.location.href = `http://127.0.0.1:${port}/`;
+                    }, 2000);
+                } else {
+                    console.error(`Failed to start ${name} module`);
+                }
+            } catch (error) {
+                console.error(`Error starting ${name} module:`, error);
+            }
+        }
+    </script>
+</body>
+</html>
